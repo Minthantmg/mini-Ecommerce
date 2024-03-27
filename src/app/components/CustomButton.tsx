@@ -1,6 +1,6 @@
-import {ButtonProps} from "@/app/types";
+// import {ButtonProps} from "@/app/types";
 import Image from "next/image";
-
+import {ButtonProps} from "@/app/types";
 
 const CustomButton = ({ label,
                     iconURL,
@@ -8,6 +8,7 @@ const CustomButton = ({ label,
                     textColor,
                     borderColor,
                     fullWidth,} : ButtonProps) => {
+    console.log(backgroundColor,textColor,borderColor)
 return(
     <>
         <button
@@ -15,11 +16,10 @@ return(
       ${
                 backgroundColor
                     ? `${backgroundColor} ${textColor} ${borderColor}`
-                    : "bg-coral-red text-white border-coral-red"
+                    : ""
             } rounded-full ${fullWidth && "w-full"}`}
         >
             {label}
-
             {iconURL && (
                 <Image
                     src={iconURL}
