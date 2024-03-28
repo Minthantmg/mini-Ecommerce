@@ -1,5 +1,4 @@
 import {MouseEventHandler} from "react";
-import {Products} from "../../../constants";
 
 export interface CustomButtonProps {
     isDisabled?: boolean;
