@@ -1,9 +1,24 @@
+import {MouseEventHandler} from "react";
+import {Products} from "../../../constants";
 
-export interface ButtonProps{
-    label: string,
-    iconURL?: string,
-    backgroundColor?: string,
-    textColor?: string,
-    borderColor?: string,
-    fullWidth?: string,
+export interface CustomButtonProps {
+    isDisabled?: boolean;
+    btnType?: "button" | "submit";
+    containerStyles?: string;
+    textStyles?: string;
+    title: string;
+    rightIcon?: string;
+    handleClick?: MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface CustomCardProps {
+    containerStyles?: string;
+    textStyles?: string;
+    title: string;
+    price: string;
+    image? : any;
+}
+
+export interface CarouselProps{
+    card : string[]
 }
