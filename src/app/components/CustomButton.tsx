@@ -1,34 +1,25 @@
-import {ButtonProps} from "@/app/types";
 import Image from "next/image";
+import {CustomButtonProps} from "@/app/types";
 
-
-const CustomButton = ({ label,
-                    iconURL,
-                    backgroundColor,
-                    textColor,
-                    borderColor,
-                    fullWidth,} : ButtonProps) => {
-return(
-    <>
-        <button
-            className={`flex justify-center items-center gap-2 px-7 py-4 border font-montserrat text-lg leading-none
-      ${
-                backgroundColor
-                    ? `${backgroundColor} ${textColor} ${borderColor}`
-                    : "bg-coral-red text-white border-coral-red"
-            } rounded-full ${fullWidth && "w-full"}`}
-        >
-            {label}
-
-            {iconURL && (
+const CustomButton = ({ isDisabled, btnType, containerStyles, textStyles, title, rightIcon, handleClick }: CustomButtonProps) => (
+    <button
+        disabled={isDisabled}
+        type={btnType || "button"}
+        className={`custom-btn ${containerStyles}`}
+        onClick={handleClick}
+    >
+        <span className={`flex-1 ${textStyles}`}>{title}</span>
+        {rightIcon && (
+            <div className="relative w-6 h-6">
                 <Image
-                    src={iconURL}
-                    alt='arrow right icon'
-                    className='ml-2 rounded-full bg-white w-5 h-5'
+                    src={rightIcon}
+                    alt="arrow_left"
+                    fill
+                    className="object-contain"
                 />
-            )}
-        </button>
-    </>
-)
-}
+            </div>
+        )}
+    </button>
+);
+
 export default CustomButton;
