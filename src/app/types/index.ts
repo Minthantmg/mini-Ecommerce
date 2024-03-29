@@ -17,7 +17,3 @@ export interface CustomCardProps {
     price: string;
     image? : any;
 }
-
-export interface CarouselProps{
-    card : string[]
-}
