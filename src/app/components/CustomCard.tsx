@@ -10,7 +10,7 @@ const CustomCard = ({ containerStyles, textStyles, title , price,image }: Custom
         </div>
         <div className="flex flex-col mt-6 mb-4">
             <span className={`font-mono ml-4 ${textStyles}`}>{title}</span>
-            <span className={`font-bold font-mono ml-4 mt-2 ${textStyles}`}>{price}$</span>
+            <span className={`font-bold font-mono ml-4 mt-1 ${textStyles}`}>{price}$</span>
         </div>
     </div>
 );

@@ -11,7 +11,7 @@ import {Products} from "../../../constants";
 
 const CustomCarousel = () => {
     return (
-        <div>
+        <div className="wide:pt-4">
             <Carousel>
                 <CarouselContent>
                     {Products.map((product) => (
