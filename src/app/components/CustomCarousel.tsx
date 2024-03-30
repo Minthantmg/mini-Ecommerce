@@ -17,7 +17,7 @@ const CustomCarousel = () => {
                     {Products.map((product) => (
                         <CarouselItem className="wide:basis-1/5 basis-1/2 my-4">
                             <div
-                                className={`border border-gray-300 hover:border-black bg-white cursor-pointer w-${100} h-${100}`}
+                                className={`border border-gray-300 hover:border-black bg-white cursor-pointer`}
                             >
                                 <div className="flex justify-center items-center">
                                     <Image src={product.image} alt={product.title} className="w-52 h-52"/>
