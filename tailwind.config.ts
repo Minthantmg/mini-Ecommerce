@@ -33,6 +33,9 @@ const config = {
         "2xl": "1400px",
       },
     },
+    colors:{
+      pink : "#EDA3B5"
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
