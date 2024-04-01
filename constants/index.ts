@@ -75,3 +75,18 @@ export const Products = [
     },
 ]
 
+export const filterItems = [
+    {
+        name: "All",
+        category : 1
+    },
+    {
+        name: "phone",
+        category : 2
+    },
+    {
+        name: "TV",
+        category : 3
+    },
+]
+
