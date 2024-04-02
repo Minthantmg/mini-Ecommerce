@@ -17,3 +17,8 @@ export interface CustomCardProps {
     price: string;
     image? : any;
 }
+
+
+export interface clickIdProps {
+    clickedItemId : string;
+}
