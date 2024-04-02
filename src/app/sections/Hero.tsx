@@ -2,10 +2,12 @@ import React from 'react';
 import {Products} from "../../../constants";
 import CustomCard from "@/app/components/CustomCard";
 import Carousel from "@/app/components/CustomCarousel";
+import {useSelector} from "react-redux";
 
 const Hero = () => {
+
     return (
-        <div className="wide:pt-32">
+        <div className="sm:pt-32">
             <div className="flex">
                 <div className="w-1/2 rounded-lg h-[500px] bg-pink-200 flex justify-start items-end">
                     <div className="ml-4 mb-6">
@@ -21,13 +23,13 @@ const Hero = () => {
                                 Health
                             </div>
                         </div>
-                        <div className="w-1/2 bg-purple-500 rounded-lg mr-4 flex items-end">
+                        <div className="w-1/2 bg-purple-500 rounded-lg flex items-end">
                             <div className="m-4 text-white text-3xl font-bold">
                                 New
                             </div>
                         </div>
                     </div>
-                    <div className="bg-pink-500 rounded-lg h-[240px] mt-4 ml-4 mr-4 flex items-end">
+                    <div className="bg-pink-500 rounded-lg h-[240px] mt-4 ml-4 flex items-end">
                         <div className="text-white m-6 text-3xl font-bold">
                             New
                         </div>
@@ -39,7 +41,7 @@ const Hero = () => {
                 Product we are proud of
             </div>
             <div
-                className="grid grid-cols-2 wide:grid-cols-4 tablet_wide:grid-cols-2 small_phone_wide:grid-cols-1 gap-4 wide:pt-8">
+                className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-8">
                 {Products.slice(0, 8).map((product) => (
                     <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2"/>
                 ))}
