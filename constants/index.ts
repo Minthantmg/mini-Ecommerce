@@ -5,7 +5,7 @@ export const Products = [
         id: 1,
         title: "IPhone 15",
         price: "999",
-        brand: "IPhone",
+        brand: "Apple",
         image: iphone,
         category: "phone"
     },
@@ -13,7 +13,7 @@ export const Products = [
         id: 2,
         title: "IPhone 15 pro",
         price: "1199",
-        brand: "IPhone",
+        brand: "Apple",
         image: iphone,
         category: "phone"
     },
@@ -21,7 +21,7 @@ export const Products = [
         id: 3,
         title: "IPhone 15 pro max",
         price: "1399",
-        brand: "IPhone",
+        brand: "Apple",
         image: iphone,
         category: "phone"
     },
@@ -29,7 +29,7 @@ export const Products = [
         id: 4,
         title: "IPhone 15 double pro max",
         price: "1499",
-        brand: "IPhone",
+        brand: "Apple",
         image: iphone,
         category: "phone"
     },
@@ -37,7 +37,7 @@ export const Products = [
         id: 5,
         title: "IPhone 15",
         price: "999",
-        brand: "IPhone",
+        brand: "Apple",
         image: iphone,
         category: "phone"
     },
@@ -73,20 +73,44 @@ export const Products = [
         image: iphone,
         category: "TV"
     },
+    {
+        id: 10,
+        title: "Apple TV",
+        price: "3499",
+        brand: "Apple",
+        image: iphone,
+        category: "TV"
+    },
+    {
+        id: 11,
+        title: "Apple omled TV",
+        price: "4499",
+        brand: "Apple",
+        image: iphone,
+        category: "TV"
+    },
+    {
+        id: 12,
+        title: "Samsung Ultra TV",
+        price: "1499",
+        brand: "Samsung",
+        image: iphone,
+        category: "TV"
+    },
 ]
 
 export const filterItems = [
     {
         name: "All",
-        category : 1
+        category : "All"
     },
     {
         name: "phone",
-        category : 2
+        category : "phone"
     },
     {
         name: "TV",
-        category : 3
+        category : "TV"
     },
 ]
 
