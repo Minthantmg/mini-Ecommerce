@@ -6,18 +6,22 @@ import {filterItems, Products} from "../../../../constants";
 import CustomCard from "@/app/components/CustomCard";
 import {Button} from "@/components/ui/button";
 import {CustomButton} from "@/app/components";
+import {clickIdProps} from "@/app/types";
 
 const Page = () => {
     const router = useRouter()
-    const [filter, setFilter] = useState("1")
+    const [filter, setFilter] = useState("All")
 
     const goBack = () => {
         router.push('/')
     }
 
-    const handleToggle = () => {
+    const handleToggle = ({clickedItemId} : clickIdProps) => {
+        setFilter(clickedItemId)
+    };
 
-    }
+    const filteredProducts = Products.filter((product) => product.category === filter.toString());
+
 
     useEffect(() => {
             router.prefetch('/')
@@ -34,13 +38,21 @@ const Page = () => {
             </div>
             <div className="flex justify-center items-center gap-2">
                 {filterItems.map((item) => (
-                    <CustomButton title={item.name} containerStyles="border px-2 py-2 hover:border-black border-2"/>
+                    <CustomButton key={item.name} title={item.name} containerStyles="border px-2 py-2 hover:border-black border-2" handleClick={() => handleToggle({clickedItemId: item.category})}/>
                 ))}
             </div>
-            <div
-                className="grid grid-cols-2 wide:grid-cols-4 tablet_wide:grid-cols-2 small_phone_wide:grid-cols-1 gap-4 wide:pt-10">
-                {Products.map((product) => (
-                    <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2"/>
+            {filter === "All" && (
+                <>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
+                        {Products.map((product) => (
+                            <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2" />
+                        ))}
+                    </div>
+                </>
+            )}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
+                {filteredProducts.map((product) => (
+                    <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2" />
                 ))}
             </div>
         </div>
