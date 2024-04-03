@@ -37,11 +37,11 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div className="font-bold text-xl pt-10">
+            <div className="font-bold text-2xl pt-10">
                 Product we are proud of
             </div>
             <div
-                className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-8">
+                className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-4">
                 {Products.slice(0, 8).map((product) => (
                     <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2"/>
                 ))}
@@ -70,7 +70,7 @@ const Hero = () => {
             </div>
             <Carousel/>
 
-            <div className="flex mt-20 pb-20">
+            <div className="flex pt-10 pb-20">
                 <div className="w-1/2 bg-gray-400 h-96">
                 </div>
                 <div className="w-1/2 bg-gray-200 flex flex-col justify-center items-center">
