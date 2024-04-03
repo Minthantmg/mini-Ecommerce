@@ -5,7 +5,7 @@ const Page = () => {
 
     return (
         <>
-            <div className="container mx-auto px-20">
+            <div className="container mx-auto px-32">
                 <Hero />
             </div>
         </>
