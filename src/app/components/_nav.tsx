@@ -15,13 +15,20 @@ import {
 import {useSelector} from "react-redux";
 import Empty from "@/app/components/empty";
 import Close from "../../../public/close";
+import {cartItemProps, productProps} from "@/app/types";
+import Image from "next/image";
+import {ScrollArea, ScrollBar} from "@/components/ui/scroll-area";
 
 const _Nav = () => {
     const router = useRouter()
     const {cartItems, total, amount} = useSelector((state: any) => state.cart)
-
+    const {cartData} = useSelector((state: any) => state.cartData)
     const gotoCategories = () => {
         router.push('/sections/Categories')
+    }
+
+    const gotoProductPage = () => {
+        router.push('/sections/product_page/1')
     }
 
     const gotoHome = () => {
@@ -31,12 +38,13 @@ const _Nav = () => {
     useEffect(() => {
             router.prefetch('/')
             router.prefetch('/sections/Categories')
+            router.prefetch('/sections/product_page/1')
         }, []
     )
 
     return (
         <div>
-            <div className="flex justify-between items-center fixed z-10 bg-white w-full px-32 shadow-sm">
+            <div className="flex justify-between items-center fixed z-10 bg-white w-full px-44 shadow-sm">
                 <div
                     className="rounded-full bg-red-500 text-white text-xs mx-2 my-2 px-1.5 py-7 font-bold cursor-pointer"
                     onClick={gotoHome}>
@@ -46,7 +54,7 @@ const _Nav = () => {
                     <div className="font-mono cursor-pointer hover:underline" onClick={gotoCategories}>
                         CATEGORIES
                     </div>
-                    <div className="font-mono cursor-pointer hover:underline">
+                    <div className="font-mono cursor-pointer hover:underline" onClick={gotoProductPage}>
                         PRODUCT PAGE
                     </div>
                     <div>
@@ -72,37 +80,47 @@ const _Nav = () => {
                                             <>
                                                 <SheetTitle>Your Shopping Cart({amount})</SheetTitle>
                                                 <SheetDescription>
-                                                    <div className="scroll-auto my-4">
-                                                        <div className="p-4 border border-black flex">
-                                                            <div className="w-1/5 h-28 bg-lime-400">
-                                                            </div>
-                                                            <div className="w-4/5">
-                                                                <div className="flex justify-between">
-                                                                    <div className="text-black text-xl mx-2 font-bold">
-                                                                        Black and White Lamp
+                                                    <ScrollArea className="h-[550px] rounded-md border">
+                                                        <div>
+                                                            {cartData.map((item: cartItemProps) => (
+                                                                <div className="p-4 border border-black flex">
+                                                                    <div
+                                                                        className="w-1/5 flex justify-center items-center border border-l-1">
+                                                                        <Image src={item.image} alt="cart_img"/>
                                                                     </div>
-                                                                    <div className="text-black text-xl font-bold">
-                                                                        {total}$
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    className="flex justify-between items-center mt-5 mx-2">
-                                                                    <div className="flex">
-                                                                        <button
-                                                                            className="px-2.5 text-lg bg-black text-white">-
-                                                                        </button>
-                                                                        <div className="px-2.5 text-lg">1</div>
+                                                                    <div className="w-4/5">
+                                                                        <div className="flex justify-between">
+                                                                            <div
+                                                                                className="text-black text-xl mx-2 font-bold">
+                                                                                {item.title}
+                                                                            </div>
+                                                                            <div
+                                                                                className="text-black text-xl font-bold">
+                                                                                {item.price}$
+                                                                            </div>
+                                                                        </div>
                                                                         <div
-                                                                            className="px-2.5 text-lg bg-black text-white">+
+                                                                            className="flex justify-between items-center mt-5 mx-2">
+                                                                            <div className="flex">
+                                                                                <button
+                                                                                    className="px-2.5 text-lg bg-black text-white">-
+                                                                                </button>
+                                                                                <div
+                                                                                    className="px-2.5 text-lg">{item.quantity}</div>
+                                                                                <div
+                                                                                    className="px-2.5 text-lg bg-black text-white">+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div>
+                                                                                <Close/>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div>
-                                                                        <Close/>
-                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            ))}
                                                         </div>
-                                                    </div>
+                                                        <ScrollBar orientation="horizontal"/>
+                                                    </ScrollArea>
                                                     <div
                                                         className="mt-2">-----------------------------------------------------------
                                                     </div>
