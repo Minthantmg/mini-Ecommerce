@@ -3,6 +3,7 @@ import {Products} from "../../../constants";
 import CustomCard from "@/app/components/CustomCard";
 import Carousel from "@/app/components/CustomCarousel";
 import {useSelector} from "react-redux";
+import Link from "next/link";
 
 const Hero = () => {
 
@@ -43,7 +44,10 @@ const Hero = () => {
             <div
                 className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-4">
                 {Products.slice(0, 8).map((product) => (
-                    <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2"/>
+                    <Link href={`./sections/product_page/${product.id}`}>
+                        <CustomCard key={product.id} title={product.title} price={product.price} image={product.image}
+                                    containerStyles="border-2"/>
+                    </Link>
                 ))}
             </div>
 
