@@ -19,7 +19,7 @@ const Page = () => {
         router.push('/')
     }
 
-    const handleToggle = ({clickedItemId} : clickIdProps) => {
+    const handleToggle = ({clickedItemId}: clickIdProps) => {
         setFilter(clickedItemId)
     };
 
@@ -41,15 +41,19 @@ const Page = () => {
             </div>
             <div className="flex justify-center items-center gap-2">
                 {filterItems.map((item) => (
-                    <CustomButton key={item.name} title={item.name} containerStyles="border px-2 py-2 hover:border-black border-2" handleClick={() => handleToggle({clickedItemId: item.category})}/>
+                    <CustomButton key={item.name} title={item.name}
+                                  containerStyles="border px-2 py-2 hover:border-black border-2"
+                                  handleClick={() => handleToggle({clickedItemId: item.category})}/>
                 ))}
             </div>
             {filter === "All" && (
                 <>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
                         {Products.map((product) => (
-                            <Link legacyBehavior={true} href={`/sections/product_page/${product.id}`}>
-                            <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2" />
+                            <Link href={`./product_page/${product.id}`}>
+                                <CustomCard key={product.id} title={product.title} price={product.price}
+                                            image={product.image} containerStyles="border-2">
+                                </CustomCard>
                             </Link>
                         ))}
                     </div>
@@ -57,8 +61,9 @@ const Page = () => {
             )}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
                 {filteredProducts.map((product) => (
-                    <Link legacyBehavior={true} href={`/sections/product_page/${product.id}`}>
-                    <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2" />
+                    <Link href={`./product_page/${product.id}`}>
+                        <CustomCard key={product.id} title={product.title} price={product.price} image={product.image}
+                                    containerStyles="border-2"/>
                     </Link>
                 ))}
             </div>
