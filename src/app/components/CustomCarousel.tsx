@@ -11,13 +11,12 @@ import {Products} from "../../../constants";
 
 const CustomCarousel = () => {
     return (
-        <div className="wide:pt-4">
+        <div className="sm:pb-6">
             <Carousel>
                 <CarouselContent>
                     {Products.map((product) => (
-                        <CarouselItem className="sm:basis-1/5 basis-1/2 my-4">
+                        <CarouselItem className="sm:basis-1/4 basis-1/2 my-4" key={product.id}>
                             <div
-                                key={product.title}
                                 className={`border-2 border-gray-300 hover:border-black bg-white cursor-pointer`}
                             >
                                 <div className="flex justify-center items-center">
@@ -31,8 +30,8 @@ const CustomCarousel = () => {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious/>
+                <CarouselNext/>
             </Carousel>
         </div>
     );
