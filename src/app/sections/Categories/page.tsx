@@ -7,9 +7,12 @@ import CustomCard from "@/app/components/CustomCard";
 import {Button} from "@/components/ui/button";
 import {CustomButton} from "@/app/components";
 import {clickIdProps} from "@/app/types";
+import {useSelector} from "react-redux";
+import Link from "next/link";
 
 const Page = () => {
     const router = useRouter()
+    const {cartItems, total, amount} = useSelector((state: any) => state.cart)
     const [filter, setFilter] = useState("All")
 
     const goBack = () => {
@@ -29,7 +32,7 @@ const Page = () => {
     )
 
     return (
-        <div className="py-32 px-32">
+        <div className="py-32 px-44">
             <div className="flex items-center cursor-pointer" onClick={goBack}>
                 <div>
                     <Left/>
@@ -45,14 +48,18 @@ const Page = () => {
                 <>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
                         {Products.map((product) => (
+                            <Link legacyBehavior={true} href={`/sections/product_page/${product.id}`}>
                             <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2" />
+                            </Link>
                         ))}
                     </div>
                 </>
             )}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
                 {filteredProducts.map((product) => (
+                    <Link legacyBehavior={true} href={`/sections/product_page/${product.id}`}>
                     <CustomCard key={product.id} title={product.title} price={product.price} image={product.image} containerStyles="border-2" />
+                    </Link>
                 ))}
             </div>
         </div>
