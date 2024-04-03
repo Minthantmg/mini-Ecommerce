@@ -1,4 +1,5 @@
 import {MouseEventHandler} from "react";
+import iphone from "../../../public/iph.jpg";
 
 export interface CustomButtonProps {
     isDisabled?: boolean;
@@ -15,10 +16,31 @@ export interface CustomCardProps {
     textStyles?: string;
     title: string;
     price: string;
-    image? : any;
+    image?: any;
 }
 
 
 export interface clickIdProps {
-    clickedItemId : string;
+    clickedItemId: string;
+}
+
+export interface productProps {
+    id: number,
+    title: string,
+    price?: string,
+    brand?: string,
+    image?: any,
+    category?: string,
+    quantity?: number,
+    description?: string,
+    weight?: string,
+    size?: string
+}
+
+export interface cartItemProps {
+    id: number,
+    title : string,
+    price : string,
+    quantity : number
+    image : any
 }
