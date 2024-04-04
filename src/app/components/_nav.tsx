@@ -62,8 +62,8 @@ const _Nav = () => {
                             <SheetTrigger>
                                 <div className="indicator">
                                     <span className="indicator-item badge badge-primary text-white"
-                                          style={{visibility: amount > 0 ? 'visible' : 'hidden'}}>
-                                        {amount}
+                                          style={{visibility: cartData.length > 0 ? 'visible' : 'hidden'}}>
+                                        {cartData.length}
                                     </span>
                                     <Cart/>
                                 </div>
@@ -71,9 +71,9 @@ const _Nav = () => {
                             <SheetContent>
                                 <SheetHeader>
                                     <div>
-                                        {amount < 1 ? (
+                                        {cartData.length < 1 ? (
                                             <div>
-                                                <SheetTitle>Your Shopping Cart({amount})</SheetTitle>
+                                                <SheetTitle>Your Shopping Cart({cartData.length})</SheetTitle>
                                                 <Empty/>
                                             </div>
                                         ) : (
