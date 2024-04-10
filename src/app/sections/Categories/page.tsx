@@ -20,7 +20,6 @@ const Page = () => {
     const {useGetProductsCategoryList, useGetCategoryById} = useProducts()
     const {data: categories, isSuccess} = useGetProductsCategoryList()
     const {data: categoryId, isSuccess: isIdSuccess, isLoading} = useGetCategoryById(category)
-    console.log(categoryId)
 
 
     const goBack = () => {
@@ -59,15 +58,17 @@ const Page = () => {
 
                     <div className="flex justify-center items-center gap-2">
                         {categories.map((item: any) => (
-                            <CustomButton key={item.name} title={item}
+                            <div key={item.name}>
+                            <CustomButton title={item}
                                           containerStyles="border px-2 py-2 hover:border-black border-2"
                                           handleClick={() => handleToggle({clickedItemId: item})}/>
+                            </div>
                         ))}
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
                         {categoryId.map((product: any) => (
-                            <Link href={`./product_page/${product.id}`}>
-                                <CustomCard key={product.id} title={product.title} price={product.price}
+                            <Link href={`./product_page/${product.id}`} key={product.id}>
+                                <CustomCard title={product.title} price={product.price}
                                             image={product.image}
                                             containerStyles="border-2"/>
                             </Link>

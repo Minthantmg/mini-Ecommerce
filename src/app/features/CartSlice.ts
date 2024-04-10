@@ -4,11 +4,11 @@ import {useProducts} from "../../../hook/useProducts";
 
 export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
     const data = await fetch('https://fakestoreapi.com/products')
+    console.log(data)
     return data.json()
 })
 const initialState = {
     data: [],
-    amount: 1,
     isLoading: false,
     error: false
 }

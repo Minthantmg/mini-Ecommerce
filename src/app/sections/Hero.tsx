@@ -55,8 +55,8 @@ const Hero = () => {
                         <div
                             className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-4">
                             {products.map((item:any) => (
-                                <Link href={`./sections/product_page/${item.id}`}>
-                                    <CustomCard key={item.id} title={item.title} price={item.price}
+                                <Link href={`./sections/product_page/${item.id}`} key={item.id}>
+                                    <CustomCard title={item.title} price={item.price}
                                                 image={item.image}
                                                 containerStyles="border-2"/>
                                 </Link>

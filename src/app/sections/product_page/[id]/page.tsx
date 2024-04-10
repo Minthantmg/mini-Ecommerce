@@ -3,10 +3,10 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "next/navigation";
 import {CustomButton} from "@/app/components";
 import Carousel from "@/app/components/CustomCarousel";
-import {productProps} from "@/app/types";
 import {useProducts} from "../../../../../hook/useProducts";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProducts} from "@/app/features/CartSlice";
+import Image from "next/image";
 
 const Page = () => {
     const {id} = useParams();
@@ -115,8 +115,13 @@ const Page = () => {
                 </div>
             ): (
                 <>
-                    <div className="pt-32 w-full h-screen flex justify-center items-center">Product with ID {id} not
-                        found.
+                    <div className="pt-32 w-full h-screen flex flex-col justify-center items-center">
+                        <div className="text-9xl font-bold">
+                            404
+                        </div>
+                        <div className="text-xl mt-6">
+                            We are sorry but the page you were looking for was not found!
+                        </div>
                     </div>;
                 </>
             )}

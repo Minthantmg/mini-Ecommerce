@@ -83,36 +83,38 @@ const _Nav = () => {
                                                     <ScrollArea className="h-[550px] rounded-md border">
                                                         <div>
                                                             {cartData.map((item: cartItemProps) => (
-                                                                <div className="p-4 border border-black flex">
-                                                                    <div
-                                                                        className="w-1/5 flex justify-center items-center border border-l-1">
-                                                                        <Image src={item.image} alt="cart_img"/>
-                                                                    </div>
-                                                                    <div className="w-4/5">
-                                                                        <div className="flex justify-between">
-                                                                            <div
-                                                                                className="text-black text-xl mx-2 font-bold">
-                                                                                {item.title}
-                                                                            </div>
-                                                                            <div
-                                                                                className="text-black text-xl font-bold">
-                                                                                {item.price}$
-                                                                            </div>
-                                                                        </div>
+                                                                <div key={item.id}>
+                                                                    <div className="p-4 border border-black flex">
                                                                         <div
-                                                                            className="flex justify-between items-center mt-5 mx-2">
-                                                                            <div className="flex">
-                                                                                <button
-                                                                                    className="px-2.5 text-lg bg-black text-white">-
-                                                                                </button>
+                                                                            className="w-1/5 flex justify-center items-center border border-l-1">
+                                                                            <Image src={item.image} alt="cart_img"/>
+                                                                        </div>
+                                                                        <div className="w-4/5">
+                                                                            <div className="flex justify-between">
                                                                                 <div
-                                                                                    className="px-2.5 text-lg">{item.quantity}</div>
+                                                                                    className="text-black text-xl mx-2 font-bold">
+                                                                                    {item.title}
+                                                                                </div>
                                                                                 <div
-                                                                                    className="px-2.5 text-lg bg-black text-white">+
+                                                                                    className="text-black text-xl font-bold">
+                                                                                    {item.price}$
                                                                                 </div>
                                                                             </div>
-                                                                            <div>
-                                                                                <Close/>
+                                                                            <div
+                                                                                className="flex justify-between items-center mt-5 mx-2">
+                                                                                <div className="flex">
+                                                                                    <button
+                                                                                        className="px-2.5 text-lg bg-black text-white">-
+                                                                                    </button>
+                                                                                    <div
+                                                                                        className="px-2.5 text-lg">{item.quantity}</div>
+                                                                                    <div
+                                                                                        className="px-2.5 text-lg bg-black text-white">+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <Close/>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
