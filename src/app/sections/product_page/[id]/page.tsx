@@ -1,29 +1,30 @@
 'use client'
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "next/navigation";
-import {Products} from "../../../../../constants";
-import Image from "next/image";
 import {CustomButton} from "@/app/components";
 import Carousel from "@/app/components/CustomCarousel";
-import {useSelector} from "react-redux";
 import {productProps} from "@/app/types";
 import {useProducts} from "../../../../../hook/useProducts";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchProducts} from "@/app/features/CartSlice";
 
 const Page = () => {
     const {id} = useParams();
+    const dispatch = useDispatch()
+    // @ts-ignore
+    const data = useSelector(state => state.cart)
+
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(fetchProducts())
+
+    }, [dispatch]);
+    console.log(data)
     const {cartItems} = useSelector((state: any) => state.cart)
     const [count, setCount] = useState(1)
 
     const {useGetIdOne} = useProducts()
     const {data: product, isSuccess} = useGetIdOne(Number(id))
-    console.log(product)
-
-    const selectedProduct = cartItems.find((product: productProps) => product.id === parseInt(id as string));
-
-    if (!selectedProduct) {
-        return <div className="pt-32 w-full h-screen flex justify-center items-center">Product with ID {id} not
-            found.</div>;
-    }
 
     const addCount = () => {
         setCount(count + 1)
@@ -35,11 +36,9 @@ const Page = () => {
         }
     };
 
-    const {title, price, brand, image, category, description, quantity, size, weight} = selectedProduct;
-
     return (
         <>
-            {isSuccess && (
+            {isSuccess && product ? (
                 <div className="pt-28 px-44">
                     <div className="flex py-10">
                         <div className="w-1/2">
@@ -114,6 +113,12 @@ const Page = () => {
                     </div>
                     <Carousel/>
                 </div>
+            ): (
+                <>
+                    <div className="pt-32 w-full h-screen flex justify-center items-center">Product with ID {id} not
+                        found.
+                    </div>;
+                </>
             )}
         </>
     );
