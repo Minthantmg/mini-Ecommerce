@@ -6,7 +6,9 @@ import Footer from "@/app/components/_footer";
 import React from "react";
 import {store} from '@/store'
 import {Provider} from 'react-redux'
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
+const queryClient = new QueryClient()
 
 const metadata: Metadata = {
     title: "Create Next App",
@@ -19,14 +21,16 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <Provider store={store}>
-            <html lang="en" className="!scroll-smooth">
-            <body className="bg-white text-black">
-            <Nav/>
-            {children}
-            <Footer/>
-            </body>
-            </html>
-        </Provider>
+        <QueryClientProvider client={queryClient}>
+            <Provider store={store}>
+                <html lang="en" className="!scroll-smooth bg-white">
+                <body className="bg-white text-black">
+                <Nav/>
+                {children}
+                <Footer/>
+                </body>
+                </html>
+            </Provider>
+        </QueryClientProvider>
     );
 }
