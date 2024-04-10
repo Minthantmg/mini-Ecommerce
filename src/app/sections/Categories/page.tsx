@@ -9,18 +9,26 @@ import {CustomButton} from "@/app/components";
 import {clickIdProps} from "@/app/types";
 import {useSelector} from "react-redux";
 import Link from "next/link";
+import {useProducts} from "../../../../hook/useProducts";
 
 const Page = () => {
     const router = useRouter()
     const {cartItems, total, amount} = useSelector((state: any) => state.cart)
     const [filter, setFilter] = useState("All")
+    const [category, setCategory] = useState("electronics")
+
+    const {useGetProductsCategoryList, useGetCategoryById} = useProducts()
+    const {data: categories, isSuccess} = useGetProductsCategoryList()
+    const {data: categoryId, isSuccess: isIdSuccess, isLoading} = useGetCategoryById(category)
+    console.log(categoryId)
+
 
     const goBack = () => {
         router.push('/')
     }
 
     const handleToggle = ({clickedItemId}: clickIdProps) => {
-        setFilter(clickedItemId)
+        setCategory(clickedItemId)
     };
 
     const filteredProducts = Products.filter((product) => product.category === filter.toString());
@@ -32,43 +40,42 @@ const Page = () => {
     )
 
     return (
-        <div className="py-32 px-44">
-            <div className="flex items-center cursor-pointer" onClick={goBack}>
-                <div>
-                    <Left/>
-                </div>
-                <div className="ml-1">Home</div>
-            </div>
-            <div className="flex justify-center items-center gap-2">
-                {filterItems.map((item) => (
-                    <CustomButton key={item.name} title={item.name}
-                                  containerStyles="border px-2 py-2 hover:border-black border-2"
-                                  handleClick={() => handleToggle({clickedItemId: item.category})}/>
-                ))}
-            </div>
-            {filter === "All" && (
+        <>
+            {isLoading && (
                 <>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
-                        {Products.map((product) => (
-                            <Link href={`./product_page/${product.id}`}>
-                                <CustomCard key={product.id} title={product.title} price={product.price}
-                                            image={product.image} containerStyles="border-2">
-                                </CustomCard>
-                            </Link>
-                        ))}
+                    <div className="flex justify-center items-center w-full h-screen">
+                        Loading ...
                     </div>
                 </>
             )}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
-                {filteredProducts.map((product) => (
-                    <Link href={`./product_page/${product.id}`}>
-                        <CustomCard key={product.id} title={product.title} price={product.price} image={product.image}
-                                    containerStyles="border-2"/>
-                    </Link>
-                ))}
-            </div>
-        </div>
+            {isSuccess && isIdSuccess && (
+                <div className="py-32 px-44">
+                    <div className="flex items-center cursor-pointer" onClick={goBack}>
+                        <div>
+                            <Left/>
+                        </div>
+                        <div className="ml-1">Home</div>
+                    </div>
+
+                    <div className="flex justify-center items-center gap-2">
+                        {categories.map((item: any) => (
+                            <CustomButton key={item.name} title={item}
+                                          containerStyles="border px-2 py-2 hover:border-black border-2"
+                                          handleClick={() => handleToggle({clickedItemId: item})}/>
+                        ))}
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
+                        {categoryId.map((product: any) => (
+                            <Link href={`./product_page/${product.id}`}>
+                                <CustomCard key={product.id} title={product.title} price={product.price}
+                                            image={product.image}
+                                            containerStyles="border-2"/>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
-
 export default Page;
