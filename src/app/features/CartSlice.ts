@@ -1,24 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
-import {cartItems, Products} from "../../../constants";
+import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {useProducts} from "../../../hook/useProducts";
 
+
+export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
+    const data = await fetch('https://fakestoreapi.com/products')
+    return data.json()
+})
 const initialState = {
-    cartItems: Products,
+    data: [],
     amount: 1,
-    total: 0,
-    isLoading: true,
-};
+    isLoading: false,
+    error: false
+}
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
-    reducers: {
-        addToCart(state, action) {
-            state.cartItems.push(action.payload);
-            state.total = state.cartItems.reduce((acc, item) => {
-                const price = parseFloat(item.price);
-                return acc + (price * item.quantity);
-            }, 0);
-        },
-    },
-});
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(fetchProducts.pending, (state, action) => {
+            state.isLoading = true
+        })
+        builder.addCase(fetchProducts.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.data = action.payload
+        })
+        builder.addCase(fetchProducts.rejected, (state, action) => {
+            state.error = true
+        })
+    }
+})
 
-export default cartSlice.reducer
+export default cartSlice.reducer;
