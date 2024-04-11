@@ -8,13 +8,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchProducts} from "@/app/features/CartSlice";
 import Image from "next/image";
 import {addItemToCart} from "@/app/features/CartDataSlice";
+import {toast} from "sonner";
 
 const Page = () => {
     const {id} = useParams();
     const [count, setCount] = useState(1)
 
     const {useGetIdOne} = useProducts()
-    const {data: product, isSuccess} = useGetIdOne(Number(id))
+    const {data: product, isSuccess, isLoading} = useGetIdOne(Number(id))
 
     const addCount = () => {
         setCount(count + 1)
@@ -33,13 +34,30 @@ const Page = () => {
             console.error('Missing product or count data in addToCartHandler');
             return;
         }
-        dispatch(addItemToCart({id: product.id, title: product.title, price: product.price, quantity: count,image:product.image}));
-        console.log(addItemToCart({id: product.id, title: product.title, price: product.price, quantity: count,image:product.image}))
+        dispatch(addItemToCart({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            quantity: count,
+            image: product.image
+        }));
+        console.log(addItemToCart({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            quantity: count,
+            image: product.image
+        }))
+        toast("Item added to cart")
     };
 
     return (
         <>
-            {isSuccess && product ? (
+            {isLoading ? (
+                <div className="pt-32 w-full h-screen flex flex-col justify-center items-center">
+                    <div>Loading...</div>
+                </div>
+            ) : isSuccess && product ? (
                 <div className="pt-28 px-44">
                     <div className="flex py-10">
                         <div className="w-1/2">
@@ -117,7 +135,7 @@ const Page = () => {
                 </div>
             ) : (
                 <>
-                    <div className="pt-32 w-full h-screen flex flex-col justify-center items-center">
+                    <div className="w-full h-screen flex flex-col justify-center items-center">
                         <div className="text-9xl font-bold">
                             404
                         </div>
