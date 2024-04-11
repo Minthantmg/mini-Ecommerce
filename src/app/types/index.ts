@@ -40,7 +40,8 @@ export interface productProps {
 export interface cartItemProps {
     id: number,
     title : string,
-    price : string,
+    price : number,
     quantity : number
     image : any
 }
+
