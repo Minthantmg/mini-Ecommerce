@@ -7,20 +7,10 @@ import {useProducts} from "../../../../../hook/useProducts";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProducts} from "@/app/features/CartSlice";
 import Image from "next/image";
+import {addItemToCart} from "@/app/features/CartDataSlice";
 
 const Page = () => {
     const {id} = useParams();
-    const dispatch = useDispatch()
-    // @ts-ignore
-    const data = useSelector(state => state.cart)
-
-    useEffect(() => {
-        // @ts-ignore
-        dispatch(fetchProducts())
-
-    }, [dispatch]);
-    console.log(data)
-    const {cartItems} = useSelector((state: any) => state.cart)
     const [count, setCount] = useState(1)
 
     const {useGetIdOne} = useProducts()
@@ -34,6 +24,17 @@ const Page = () => {
         if (count > 0) {
             setCount(count - 1);
         }
+    };
+
+    const dispatch = useDispatch();
+
+    const addToCartHandler = () => {
+        if (!product || !count) {
+            console.error('Missing product or count data in addToCartHandler');
+            return;
+        }
+        dispatch(addItemToCart({id: product.id, title: product.title, price: product.price, quantity: count,image:product.image}));
+        console.log(addItemToCart({id: product.id, title: product.title, price: product.price, quantity: count,image:product.image}))
     };
 
     return (
@@ -74,9 +75,10 @@ const Page = () => {
                                     {product.price}$
                                 </div>
                             </div>
-                            <div className="flex gap-4 mt-8 w-full">
+                            <div className="flex gap-4 mt-8 w-full pb-8">
                                 <CustomButton title="ADD TO CART"
-                                              containerStyles="border border-2 border-black bg-gray-200 px-6 py-2 font-bold w-1/2"/>
+                                              containerStyles="border border-2 border-black bg-gray-200 px-6 py-2 font-bold w-1/2"
+                                              handleClick={addToCartHandler}/>
                                 <CustomButton title="BUY NOW"
                                               containerStyles="bg-red-500 px-6 py-2 text-white font-bold w-1/2"/>
                             </div>
@@ -113,7 +115,7 @@ const Page = () => {
                     </div>
                     <Carousel/>
                 </div>
-            ): (
+            ) : (
                 <>
                     <div className="pt-32 w-full h-screen flex flex-col justify-center items-center">
                         <div className="text-9xl font-bold">
@@ -122,7 +124,8 @@ const Page = () => {
                         <div className="text-xl mt-6">
                             We are sorry but the page you were looking for was not found!
                         </div>
-                    </div>;
+                    </div>
+                    ;
                 </>
             )}
         </>
