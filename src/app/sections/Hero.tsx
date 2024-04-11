@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Products} from "../../../constants";
 import CustomCard from "@/app/components/CustomCard";
 import Carousel from "@/app/components/CustomCarousel";
@@ -7,11 +7,22 @@ import image_four from "../../../public/f4.jpg"
 import Link from "next/link";
 import Image from "next/image";
 import {useProducts} from "../../../hook/useProducts";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchProducts} from "@/app/features/CartSlice";
 
 const Hero = () => {
-
     const {useGetProductsList} = useProducts()
     const {data: products, isSuccess} = useGetProductsList()
+    // const dispatch = useDispatch()
+    // // @ts-ignore
+    // const data = useSelector(state => state.cart)
+    //
+    // useEffect(() => {
+    //     // @ts-ignore
+    //     dispatch(fetchProducts())
+    //
+    // }, [dispatch]);
+    // console.log(data)
 
     return (
         <>
@@ -42,7 +53,8 @@ const Hero = () => {
                                 <div className="group hover:opacity-90 rounded-lg h-[240px] mt-4 ml-4 flex items-end">
                                     <Image src={image_four} alt="header_image_four"
                                            className="h-60 absolute rounded-lg w-[560px]"/>
-                                    <div className="relative text-white m-6 text-3xl font-bold group-hover:text-opacity-70">
+                                    <div
+                                        className="relative text-white m-6 text-3xl font-bold group-hover:text-opacity-70">
                                         New
                                     </div>
                                 </div>
@@ -54,7 +66,7 @@ const Hero = () => {
                         </div>
                         <div
                             className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-4">
-                            {products.map((item:any) => (
+                            {products.map((item: any) => (
                                 <Link href={`./sections/product_page/${item.id}`} key={item.id}>
                                     <CustomCard title={item.title} price={item.price}
                                                 image={item.image}
