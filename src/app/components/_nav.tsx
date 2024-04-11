@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Cart from '../../../public/cart'
 import {useRouter} from "next/navigation";
 import {
@@ -12,7 +12,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Empty from "@/app/components/empty";
 import Close from "../../../public/close";
 import {cartItemProps, productProps} from "@/app/types";
@@ -21,8 +21,12 @@ import {ScrollArea, ScrollBar} from "@/components/ui/scroll-area";
 
 const _Nav = () => {
     const router = useRouter()
+    const dispatch = useDispatch();
     const {cartItems, total, amount} = useSelector((state: any) => state.cart)
     const {cartData} = useSelector((state: any) => state.cartData)
+    const deepCopy = JSON.parse(JSON.stringify(cartData));
+    console.log("deepCopy:" + cartData)
+
     const gotoCategories = () => {
         router.push('/sections/Categories')
     }
@@ -78,38 +82,38 @@ const _Nav = () => {
                                             </div>
                                         ) : (
                                             <>
-                                                <SheetTitle>Your Shopping Cart({amount})</SheetTitle>
+                                                <SheetTitle>Your Shopping Cart({cartData.length})</SheetTitle>
                                                 <SheetDescription>
                                                     <ScrollArea className="h-[550px] rounded-md border">
                                                         <div>
                                                             {cartData.map((item: cartItemProps) => (
                                                                 <div key={item.id}>
-                                                                    <div className="p-4 border border-black flex">
+                                                                    <div className="p-4 border border-black flex m-2">
                                                                         <div
-                                                                            className="w-1/5 flex justify-center items-center border border-l-1">
-                                                                            <Image src={item.image} alt="cart_img"/>
+                                                                            className="w-3/12 flex justify-center items-center border border-l-1">
+                                                                            <img src={item.image} alt="cart_img" width={0} height={0}/>
                                                                         </div>
-                                                                        <div className="w-4/5">
+                                                                        <div className="w-9/12">
                                                                             <div className="flex justify-between">
                                                                                 <div
-                                                                                    className="text-black text-xl mx-2 font-bold">
+                                                                                    className="text-black mx-2 font-bold line-clamp-3">
                                                                                     {item.title}
                                                                                 </div>
                                                                                 <div
                                                                                     className="text-black text-xl font-bold">
-                                                                                    {item.price}$
+                                                                                    {item.price * item.quantity}$
                                                                                 </div>
                                                                             </div>
                                                                             <div
                                                                                 className="flex justify-between items-center mt-5 mx-2">
                                                                                 <div className="flex">
                                                                                     <button
-                                                                                        className="px-2.5 text-lg bg-black text-white">-
+                                                                                        className="px-2.5 text-lg bg-black text-white cursor-pointer">-
                                                                                     </button>
                                                                                     <div
                                                                                         className="px-2.5 text-lg">{item.quantity}</div>
                                                                                     <div
-                                                                                        className="px-2.5 text-lg bg-black text-white">+
+                                                                                        className="px-2.5 text-lg bg-black text-white cursor-pointer">+
                                                                                     </div>
                                                                                 </div>
                                                                                 <div>

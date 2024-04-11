@@ -3,14 +3,20 @@ import {cartItems, Products} from "../../../constants";
 
 const initialState = {
     cartData: cartItems,
-    amount: 1,
+    quantity: 0,
     total: 0,
     isLoading: true,
 };
 const cartDataSlice = createSlice({
     name: 'cartData',
     initialState,
-    reducers: {},
+    reducers: {
+        addItemToCart: (state, action) => {
+            // @ts-ignore
+            state.cartData.push({...action.payload});
+        },
+    },
 });
 
+export const {addItemToCart} = cartDataSlice.actions;
 export default cartDataSlice.reducer
