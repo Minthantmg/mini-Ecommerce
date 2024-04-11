@@ -175,12 +175,12 @@ export const filterItems = [
 ]
 
 export const cartItems = [
-    {
-        id: 1,
-        title: "test",
-        price: "1",
-        quantity: "1",
-        image: iphone
-    },
+    // {
+    //     id: 1,
+    //     title: "test",
+    //     price: "1",
+    //     quantity: "1",
+    //     image: iphone
+    // },
 ]
 
