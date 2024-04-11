@@ -12,7 +12,7 @@ import {fetchProducts} from "@/app/features/CartSlice";
 
 const Hero = () => {
     const {useGetProductsList} = useProducts()
-    const {data: products, isSuccess} = useGetProductsList()
+    const {data: products, isSuccess,isLoading} = useGetProductsList()
     // const dispatch = useDispatch()
     // // @ts-ignore
     // const data = useSelector(state => state.cart)
