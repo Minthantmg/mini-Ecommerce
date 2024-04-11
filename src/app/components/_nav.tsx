@@ -18,6 +18,8 @@ import Close from "../../../public/close";
 import {cartItemProps, productProps} from "@/app/types";
 import Image from "next/image";
 import {ScrollArea, ScrollBar} from "@/components/ui/scroll-area";
+import {clearCart} from "@/app/features/CartDataSlice";
+import {toast} from "sonner";
 
 const _Nav = () => {
     const router = useRouter()
@@ -25,7 +27,6 @@ const _Nav = () => {
     const {cartItems, total, amount} = useSelector((state: any) => state.cart)
     const {cartData} = useSelector((state: any) => state.cartData)
     const deepCopy = JSON.parse(JSON.stringify(cartData));
-    console.log("deepCopy:" + cartData)
 
     const gotoCategories = () => {
         router.push('/sections/Categories')
@@ -138,7 +139,8 @@ const _Nav = () => {
                                                             {total}$
                                                         </div>
                                                         <div
-                                                            className="border sm:px-4 sm:py-2 cursor-pointer border-black bg-white hover:bg-black hover:text-white">
+                                                            className="border sm:px-4 sm:py-2 cursor-pointer border-black bg-white hover:bg-black hover:text-white"
+                                                        onClick={() => dispatch(clearCart())}>
                                                             Go to Checkout
                                                         </div>
                                                     </div>
