@@ -7,12 +7,15 @@ import {useProducts} from "../../../../../hook/useProducts";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProducts} from "@/app/features/CartSlice";
 import Image from "next/image";
-import {addItemToCart} from "@/app/features/CartDataSlice";
+import {addItemToCart, calculateTotal} from "@/app/features/CartDataSlice";
 import {toast} from "sonner";
+import {useToast} from "@/components/ui/use-toast";
 
 const Page = () => {
     const {id} = useParams();
     const [count, setCount] = useState(1)
+    const {total} = useSelector((state: any) => state.cartData)
+    const { toast } = useToast()
 
     const {useGetIdOne} = useProducts()
     const {data: product, isSuccess, isLoading} = useGetIdOne(Number(id))
@@ -41,14 +44,10 @@ const Page = () => {
             quantity: count,
             image: product.image
         }));
-        console.log(addItemToCart({
-            id: product.id,
-            title: product.title,
-            price: product.price,
-            quantity: count,
-            image: product.image
-        }))
-        toast("Item added to cart")
+        dispatch(calculateTotal(total))
+        toast({
+            title: "Item added to the cart!",
+        })
     };
 
     return (
