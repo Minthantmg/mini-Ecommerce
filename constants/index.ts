@@ -1,4 +1,5 @@
 import iphone from '../public/iph.jpg'
+import {cartItemProps, cartProps} from "@/app/types";
 
 export const Products = [
     {
@@ -174,13 +175,7 @@ export const filterItems = [
     },
 ]
 
-export const cartItems = [
-    // {
-    //     id: 1,
-    //     title: "test",
-    //     price: "1",
-    //     quantity: "1",
-    //     image: iphone
-    // },
-]
+export const cartItems: cartProps[] = [
+];
+
 

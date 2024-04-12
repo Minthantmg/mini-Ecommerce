@@ -45,3 +45,11 @@ export interface cartItemProps {
     image : any
 }
 
+export interface cartProps {
+    id: number,
+    title: string,
+    price: string,
+    quantity: string,
+    image: any
+}
+
