@@ -18,16 +18,13 @@ import Close from "../../../public/close";
 import {cartItemProps, productProps} from "@/app/types";
 import Image from "next/image";
 import {ScrollArea, ScrollBar} from "@/components/ui/scroll-area";
-import {clearCart} from "@/app/features/CartDataSlice";
+import {calculateTotal, clearCart, decrease, increase, removeItem} from "@/app/features/CartDataSlice";
 import {toast} from "sonner";
 
 const _Nav = () => {
     const router = useRouter()
     const dispatch = useDispatch();
-    const {cartItems, total, amount} = useSelector((state: any) => state.cart)
-    const {cartData} = useSelector((state: any) => state.cartData)
-    const deepCopy = JSON.parse(JSON.stringify(cartData));
-
+    const {cartData, total} = useSelector((state: any) => state.cartData)
     const gotoCategories = () => {
         router.push('/sections/Categories')
     }
@@ -78,12 +75,14 @@ const _Nav = () => {
                                     <div>
                                         {cartData.length < 1 ? (
                                             <div>
-                                                <SheetTitle>Your Shopping Cart({cartData.length})</SheetTitle>
+                                                <SheetTitle>Your Shopping
+                                                    Cart(<span>{cartData.length}</span>)</SheetTitle>
                                                 <Empty/>
                                             </div>
                                         ) : (
                                             <>
-                                                <SheetTitle>Your Shopping Cart({cartData.length})</SheetTitle>
+                                                <SheetTitle>Your Shopping
+                                                    Cart(<span>{cartData.length}</span>)</SheetTitle>
                                                 <SheetDescription>
                                                     <ScrollArea className="h-[550px] rounded-md border">
                                                         <div>
@@ -91,33 +90,48 @@ const _Nav = () => {
                                                                 <div key={item.id}>
                                                                     <div className="p-4 border border-black flex m-2">
                                                                         <div
-                                                                            className="w-3/12 flex justify-center items-center border border-l-1">
-                                                                            <img src={item.image} alt="cart_img" width={0} height={0}/>
+                                                                            className="w-3/12 flex justify-center items-center">
+                                                                            <img
+                                                                                src={item.image}
+                                                                                alt="cart_img" width={50} height={50}/>
                                                                         </div>
-                                                                        <div className="w-9/12">
+                                                                        <div className="w-9/12 border-l-2 ml-2">
                                                                             <div className="flex justify-between">
-                                                                                <div
+                                                                                <span
                                                                                     className="text-black mx-2 font-bold line-clamp-3">
                                                                                     {item.title}
-                                                                                </div>
-                                                                                <div
+                                                                                </span>
+                                                                                <span
                                                                                     className="text-black text-xl font-bold">
                                                                                     {item.price * item.quantity}$
-                                                                                </div>
+                                                                                </span>
                                                                             </div>
                                                                             <div
                                                                                 className="flex justify-between items-center mt-5 mx-2">
                                                                                 <div className="flex">
                                                                                     <button
-                                                                                        className="px-2.5 text-lg bg-black text-white cursor-pointer">-
+                                                                                        className="px-2.5 text-lg bg-black text-white cursor-pointer"
+                                                                                        onClick={() => {
+                                                                                            dispatch(decrease(item.id))
+                                                                                            dispatch(calculateTotal(total))
+                                                                                        }}
+                                                                                        disabled={item.quantity === 1}>-
                                                                                     </button>
                                                                                     <div
                                                                                         className="px-2.5 text-lg">{item.quantity}</div>
                                                                                     <div
-                                                                                        className="px-2.5 text-lg bg-black text-white cursor-pointer">+
+                                                                                        className="px-2.5 text-lg bg-black text-white cursor-pointer"
+                                                                                        onClick={() => {
+                                                                                            dispatch(increase(item.id))
+                                                                                            dispatch(calculateTotal(total))
+                                                                                        }}>+
                                                                                     </div>
                                                                                 </div>
-                                                                                <div>
+                                                                                <div className="cursor-pointer"
+                                                                                     onClick={() => {
+                                                                                         dispatch(removeItem(item.id))
+                                                                                         dispatch(calculateTotal(total))
+                                                                                     }}>
                                                                                     <Close/>
                                                                                 </div>
                                                                             </div>
@@ -140,7 +154,7 @@ const _Nav = () => {
                                                         </div>
                                                         <div
                                                             className="border sm:px-4 sm:py-2 cursor-pointer border-black bg-white hover:bg-black hover:text-white"
-                                                        onClick={() => dispatch(clearCart())}>
+                                                            onClick={() => dispatch(clearCart())}>
                                                             Go to Checkout
                                                         </div>
                                                     </div>
