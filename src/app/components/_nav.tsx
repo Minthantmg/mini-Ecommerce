@@ -37,6 +37,12 @@ const _Nav = () => {
         router.push('/')
     }
 
+    // const clear = (id:number) => {
+    //     if (cartData.quantity < 1){
+    //         dispatch(removeItem(id))
+    //     }
+    // }
+
     useEffect(() => {
             router.prefetch('/')
             router.prefetch('/sections/Categories')
@@ -115,7 +121,7 @@ const _Nav = () => {
                                                                                             dispatch(decrease(item.id))
                                                                                             dispatch(calculateTotal(total))
                                                                                         }}
-                                                                                        disabled={item.quantity === 1}>-
+                                                                                    disabled={item.quantity == 1}>-
                                                                                     </button>
                                                                                     <div
                                                                                         className="px-2.5 text-lg">{item.quantity}</div>
