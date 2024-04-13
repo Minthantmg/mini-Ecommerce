@@ -15,7 +15,7 @@ const Page = () => {
     const {id} = useParams();
     const [count, setCount] = useState(1)
     const {total} = useSelector((state: any) => state.cartData)
-    const { toast } = useToast()
+    const {toast} = useToast()
 
     const {useGetIdOne} = useProducts()
     const {data: product, isSuccess, isLoading} = useGetIdOne(Number(id))
@@ -49,6 +49,12 @@ const Page = () => {
             title: "Item added to the cart!",
         })
     };
+
+    const buyNow = () => {
+        toast({
+            title: "Successfully Bought!",
+        })
+    }
 
     return (
         <>
@@ -97,7 +103,8 @@ const Page = () => {
                                               containerStyles="border border-2 border-black bg-gray-200 px-6 py-2 font-bold w-1/2"
                                               handleClick={addToCartHandler}/>
                                 <CustomButton title="BUY NOW"
-                                              containerStyles="bg-red-500 px-6 py-2 text-white font-bold w-1/2"/>
+                                              containerStyles="bg-red-500 px-6 py-2 text-white font-bold w-1/2"
+                                              handleClick={buyNow}/>
                             </div>
                         </div>
                     </div>
