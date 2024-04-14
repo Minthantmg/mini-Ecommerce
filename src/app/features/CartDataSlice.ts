@@ -5,7 +5,6 @@ import {className} from "postcss-selector-parser";
 
 const initialState = {
     cartData: cartItems,
-    quantity: 0,
     total: 0,
     isLoading: true,
 };
