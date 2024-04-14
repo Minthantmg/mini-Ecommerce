@@ -7,8 +7,6 @@ import image_four from "../../../public/f4.jpg"
 import Link from "next/link";
 import Image from "next/image";
 import {useProducts} from "../../../hook/useProducts";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchProducts} from "@/app/features/CartSlice";
 
 const Hero = () => {
     const {useGetProductsList} = useProducts()
