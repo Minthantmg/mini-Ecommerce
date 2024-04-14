@@ -4,10 +4,8 @@ import Cart from '../../../public/cart'
 import {useRouter} from "next/navigation";
 import {
     Sheet,
-    SheetClose,
     SheetContent,
     SheetDescription,
-    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -15,16 +13,20 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import Empty from "@/app/components/empty";
 import Close from "../../../public/close";
-import {cartItemProps, productProps} from "@/app/types";
-import Image from "next/image";
+import {cartItemProps} from "@/app/types";
 import {ScrollArea, ScrollBar} from "@/components/ui/scroll-area";
 import {calculateTotal, clearCart, decrease, increase, removeItem} from "@/app/features/CartDataSlice";
-import {toast} from "sonner";
+import { Menu , X} from 'lucide-react';
 
 const _Nav = () => {
     const router = useRouter()
     const dispatch = useDispatch();
     const {cartData, total} = useSelector((state: any) => state.cartData)
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
     const gotoCategories = () => {
         router.push('/sections/Categories')
     }
@@ -37,11 +39,6 @@ const _Nav = () => {
         router.push('/')
     }
 
-    // const clear = (id:number) => {
-    //     if (cartData.quantity < 1){
-    //         dispatch(removeItem(id))
-    //     }
-    // }
 
     useEffect(() => {
             router.prefetch('/')
@@ -52,23 +49,29 @@ const _Nav = () => {
 
     return (
         <div>
-            <div className="flex justify-between items-center fixed z-10 bg-white w-full px-44 shadow-sm">
+            <div className="flex justify-between items-center fixed z-10 bg-white w-full sm:px-44 shadow-sm">
                 <div
                     className="rounded-full bg-red-500 text-white text-xs mx-2 my-2 px-1.5 py-7 font-bold cursor-pointer"
                     onClick={gotoHome}>
                     ミニマート
                 </div>
-                <div className="flex gap-10">
-                    <div className="font-mono cursor-pointer hover:underline" onClick={gotoCategories}>
+                <div className="flex sm:gap-10 gap-4">
+                    <div className="font-mono cursor-pointer hover:underline hidden sm:block" onClick={gotoCategories}>
                         CATEGORIES
                     </div>
-                    <div className="font-mono cursor-pointer hover:underline" onClick={gotoProductPage}>
+                    <div className="font-mono cursor-pointer hover:underline hidden sm:block" onClick={gotoProductPage}>
                         PRODUCT PAGE
                     </div>
+                    <button
+                        className={`sm:hidden block`}
+                        onClick={toggleMobileMenu}
+                    >
+                        {isMobileMenuOpen ? <X /> : <Menu />}
+                    </button>
                     <div>
                         <Sheet>
                             <SheetTrigger>
-                                <div className="indicator">
+                                <div className="indicator mr-6 sm:mr-0">
                                     <span className="indicator-item badge badge-primary text-white"
                                           style={{visibility: cartData.length > 0 ? 'visible' : 'hidden'}}>
                                         {cartData.length}
@@ -121,7 +124,7 @@ const _Nav = () => {
                                                                                             dispatch(decrease(item.id))
                                                                                             dispatch(calculateTotal(total))
                                                                                         }}
-                                                                                    disabled={item.quantity == 1}>-
+                                                                                        disabled={item.quantity == 1}>-
                                                                                     </button>
                                                                                     <div
                                                                                         className="px-2.5 text-lg">{item.quantity}</div>
