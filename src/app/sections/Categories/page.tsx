@@ -2,9 +2,8 @@
 import React, {useEffect, useState} from 'react';
 import Left from "../../../../public/left";
 import {useRouter} from "next/navigation";
-import {filterItems, Products} from "../../../../constants";
+import {Products} from "../../../../constants";
 import CustomCard from "@/app/components/CustomCard";
-import {Button} from "@/components/ui/button";
 import {CustomButton} from "@/app/components";
 import {clickIdProps} from "@/app/types";
 import {useSelector} from "react-redux";
