@@ -5,10 +5,7 @@ import {CustomButton} from "@/app/components";
 import Carousel from "@/app/components/CustomCarousel";
 import {useProducts} from "../../../../../hook/useProducts";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchProducts} from "@/app/features/CartSlice";
-import Image from "next/image";
 import {addItemToCart, calculateTotal} from "@/app/features/CartDataSlice";
-import {toast} from "sonner";
 import {useToast} from "@/components/ui/use-toast";
 
 const Page = () => {
