@@ -26,6 +26,10 @@ const cartDataSlice = createSlice({
             const itemId = action.payload
             state.cartData = state.cartData.filter((item) => item.id !== itemId)
         },
+        removeItemByQuantity: (state, action) => {
+            const itemId = action.payload
+            state.cartData = state.cartData.filter((item) => item.quantity < itemId.quantity)
+        },
         increase: (state, {payload}) => {
             const cartData = state.cartData.find((item) =>
                 item.id === payload)
@@ -56,6 +60,7 @@ const cartDataSlice = createSlice({
 export const {
     addItemToCart, clearCart,
     removeItem,increase,
-    decrease,calculateTotal
+    decrease,calculateTotal,
+    removeItemByQuantity
 } = cartDataSlice.actions;
 export default cartDataSlice.reducer
