@@ -15,7 +15,14 @@ import Empty from "@/app/components/empty";
 import Close from "../../../public/close";
 import {cartItemProps} from "@/app/types";
 import {ScrollArea, ScrollBar} from "@/components/ui/scroll-area";
-import {calculateTotal, clearCart, decrease, increase, removeItem} from "@/app/features/CartDataSlice";
+import {
+    calculateTotal,
+    clearCart,
+    decrease,
+    increase,
+    removeItem,
+    removeItemByQuantity
+} from "@/app/features/CartDataSlice";
 import { Menu , X} from 'lucide-react';
 
 const _Nav = () => {
@@ -123,8 +130,8 @@ const _Nav = () => {
                                                                                         onClick={() => {
                                                                                             dispatch(decrease(item.id))
                                                                                             dispatch(calculateTotal(total))
-                                                                                        }}
-                                                                                        disabled={item.quantity == 1}>-
+                                                                                            dispatch(removeItemByQuantity(item.id))
+                                                                                        }}>-
                                                                                     </button>
                                                                                     <div
                                                                                         className="px-2.5 text-lg">{item.quantity}</div>
