@@ -7,10 +7,13 @@ import image_four from "../../../public/f4.jpg"
 import Link from "next/link";
 import Image from "next/image";
 import {useProducts} from "../../../hook/useProducts";
+import Loading from "@/app/components/loading";
+import {isError} from "node:util";
+import ErrorGif from "@/app/components/errorGif";
 
 const Hero = () => {
     const {useGetProductsList} = useProducts()
-    const {data: products, isSuccess,isLoading} = useGetProductsList()
+    const {data: products, isSuccess,isLoading,isError} = useGetProductsList()
     // const dispatch = useDispatch()
     // // @ts-ignore
     // const data = useSelector(state => state.cart)
@@ -24,6 +27,8 @@ const Hero = () => {
 
     return (
         <>
+            {isLoading && <Loading />}
+            {isError && <ErrorGif />}
             {isSuccess && (
                 <>
                     <div className="sm:pt-32">
