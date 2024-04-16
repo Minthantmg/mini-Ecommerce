@@ -20,8 +20,7 @@ import {
     clearCart,
     decrease,
     increase,
-    removeItem,
-    removeItemByQuantity
+    removeItem
 } from "@/app/features/CartDataSlice";
 import { Menu , X} from 'lucide-react';
 
@@ -130,7 +129,6 @@ const _Nav = () => {
                                                                                         onClick={() => {
                                                                                             dispatch(decrease(item.id))
                                                                                             dispatch(calculateTotal(total))
-                                                                                            dispatch(removeItemByQuantity(item.id))
                                                                                         }}>-
                                                                                     </button>
                                                                                     <div
