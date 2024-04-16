@@ -9,6 +9,8 @@ import {clickIdProps} from "@/app/types";
 import {useSelector} from "react-redux";
 import Link from "next/link";
 import {useProducts} from "../../../../hook/useProducts";
+import Loading from "@/app/components/loading";
+import ErrorGif from "@/app/components/errorGif";
 
 const Page = () => {
     const router = useRouter()
@@ -18,7 +20,7 @@ const Page = () => {
 
     const {useGetProductsCategoryList, useGetCategoryById} = useProducts()
     const {data: categories, isSuccess} = useGetProductsCategoryList()
-    const {data: categoryId, isSuccess: isIdSuccess, isLoading} = useGetCategoryById(category)
+    const {data: categoryId, isSuccess: isIdSuccess, isLoading, isError} = useGetCategoryById(category)
 
 
     const goBack = () => {
@@ -39,13 +41,8 @@ const Page = () => {
 
     return (
         <>
-            {isLoading && (
-                <>
-                    <div className="flex justify-center items-center w-full h-screen">
-                        Loading ...
-                    </div>
-                </>
-            )}
+            {isLoading && <Loading/>}
+            {isError && <ErrorGif/>}
             {isSuccess && isIdSuccess && (
                 <div className="py-32 px-44">
                     <div className="flex items-center cursor-pointer" onClick={goBack}>
@@ -58,9 +55,9 @@ const Page = () => {
                     <div className="flex justify-center items-center gap-2">
                         {categories.map((item: any) => (
                             <div key={item.name}>
-                            <CustomButton title={item}
-                                          containerStyles="border px-2 py-2 hover:border-black border-2"
-                                          handleClick={() => handleToggle({clickedItemId: item})}/>
+                                <CustomButton title={item}
+                                              containerStyles="border px-2 py-2 hover:border-black border-2"
+                                              handleClick={() => handleToggle({clickedItemId: item})}/>
                             </div>
                         ))}
                     </div>
