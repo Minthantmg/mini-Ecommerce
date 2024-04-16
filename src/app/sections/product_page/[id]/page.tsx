@@ -7,6 +7,8 @@ import {useProducts} from "../../../../../hook/useProducts";
 import {useDispatch, useSelector} from "react-redux";
 import {addItemToCart, calculateTotal} from "@/app/features/CartDataSlice";
 import {useToast} from "@/components/ui/use-toast";
+import Loading from "@/app/components/loading";
+import ErrorGif from "@/app/components/errorGif";
 
 const Page = () => {
     const {id} = useParams();
@@ -56,9 +58,7 @@ const Page = () => {
     return (
         <>
             {isLoading ? (
-                <div className="pt-32 w-full h-screen flex flex-col justify-center items-center">
-                    <div>Loading...</div>
-                </div>
+                <Loading />
             ) : isSuccess && product ? (
                 <div className="pt-28 px-44">
                     <div className="flex py-10">
@@ -138,15 +138,7 @@ const Page = () => {
                 </div>
             ) : (
                 <>
-                    <div className="w-full h-screen flex flex-col justify-center items-center">
-                        <div className="text-9xl font-bold">
-                            404
-                        </div>
-                        <div className="text-xl mt-6">
-                            We are sorry but the page you were looking for was not found!
-                        </div>
-                    </div>
-                    ;
+                    <ErrorGif />
                 </>
             )}
         </>
