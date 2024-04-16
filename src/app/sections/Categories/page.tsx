@@ -44,7 +44,7 @@ const Page = () => {
             {isLoading && <Loading/>}
             {isError && <ErrorGif/>}
             {isSuccess && isIdSuccess && (
-                <div className="py-32 px-44">
+                <div className="sm:py-32 sm:px-44 px-10 pt-32 sm:pt-0">
                     <div className="flex items-center cursor-pointer" onClick={goBack}>
                         <div>
                             <Left/>
