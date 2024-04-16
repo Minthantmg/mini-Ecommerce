@@ -7,7 +7,7 @@ import {calculateTotal} from "@/app/features/CartDataSlice";
 const Page = () => {
     return (
         <>
-            <div className="container mx-auto px-32">
+            <div className="container mx-auto sm:px-32">
                 <Hero />
             </div>
         </>
