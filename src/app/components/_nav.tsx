@@ -23,6 +23,7 @@ import {
     removeItem
 } from "@/app/features/CartDataSlice";
 import { Menu , X} from 'lucide-react';
+import {Separator} from "@/components/ui/separator";
 
 const _Nav = () => {
     const router = useRouter()
@@ -57,7 +58,7 @@ const _Nav = () => {
         <div>
             <div className="flex justify-between items-center fixed z-10 bg-white w-full sm:px-44 shadow-sm">
                 <div
-                    className="rounded-full bg-red-500 text-white text-xs mx-2 my-2 px-1.5 py-7 font-bold cursor-pointer"
+                    className="rounded-full bg-red-500 text-white text-xs mx-2 my-2 px-2 sm:px-1.5 py-7 font-bold cursor-pointer"
                     onClick={gotoHome}>
                     ミニマート
                 </div>
@@ -68,16 +69,10 @@ const _Nav = () => {
                     <div className="font-mono cursor-pointer hover:underline hidden sm:block" onClick={gotoProductPage}>
                         PRODUCT PAGE
                     </div>
-                    <button
-                        className={`sm:hidden block`}
-                        onClick={toggleMobileMenu}
-                    >
-                        {isMobileMenuOpen ? <X /> : <Menu />}
-                    </button>
                     <div>
                         <Sheet>
                             <SheetTrigger>
-                                <div className="indicator mr-6 sm:mr-0">
+                                <div className="indicator mr-2 sm:mr-0">
                                     <span className="indicator-item badge badge-primary text-white"
                                           style={{visibility: cartData.length > 0 ? 'visible' : 'hidden'}}>
                                         {cartData.length}
@@ -98,8 +93,8 @@ const _Nav = () => {
                                             <>
                                                 <SheetTitle>Your Shopping
                                                     Cart(<span>{cartData.length}</span>)</SheetTitle>
-                                                <SheetDescription>
-                                                    <ScrollArea className="h-[550px] rounded-md border">
+                                                <SheetDescription className="sm:mt-4 mt-2">
+                                                    <ScrollArea className="h-[480px] sm:h-[550px] rounded-md border">
                                                         <div>
                                                             {cartData.map((item: cartItemProps) => (
                                                                 <div key={item.id}>
@@ -111,18 +106,18 @@ const _Nav = () => {
                                                                                 alt="cart_img" width={50} height={50}/>
                                                                         </div>
                                                                         <div className="w-9/12 border-l-2 ml-2">
-                                                                            <div className="flex justify-between">
+                                                                            <div className="sm:flex justify-between text-start">
                                                                                 <span
                                                                                     className="text-black mx-2 font-bold line-clamp-3">
                                                                                     {item.title}
                                                                                 </span>
                                                                                 <span
-                                                                                    className="text-black text-xl font-bold">
+                                                                                    className="text-black sm:text-xl text-lg font-bold ml-2 sm:ml-0">
                                                                                     {item.price * item.quantity}$
                                                                                 </span>
                                                                             </div>
                                                                             <div
-                                                                                className="flex justify-between items-center mt-5 mx-2">
+                                                                                className="flex justify-between items-center mt-2 sm:mt-5 mx-2">
                                                                                 <div className="flex">
                                                                                     <button
                                                                                         className="px-2.5 text-lg bg-black text-white cursor-pointer"
@@ -156,18 +151,16 @@ const _Nav = () => {
                                                         </div>
                                                         <ScrollBar orientation="horizontal"/>
                                                     </ScrollArea>
-                                                    <div
-                                                        className="mt-2">-----------------------------------------------------------
-                                                    </div>
+                                                    <Separator className="my-4 bg-gray-400"/>
                                                     <div className="mt-2 font-bold text-lg text-black">
                                                         Subtotal
                                                     </div>
-                                                    <div className="flex justify-between items-center">
+                                                    <div className="sm:flex justify-between items-center">
                                                         <div className="font-bold text-lg text-black">
                                                             {total}$
                                                         </div>
                                                         <div
-                                                            className="border sm:px-4 sm:py-2 cursor-pointer border-black bg-white hover:bg-black hover:text-white"
+                                                            className="mt-6 sm:mt-0 border px-4 py-2 cursor-pointer border-black bg-white hover:bg-black hover:text-white"
                                                             onClick={() => dispatch(clearCart())}>
                                                             Go to Checkout
                                                         </div>
@@ -180,6 +173,12 @@ const _Nav = () => {
                             </SheetContent>
                         </Sheet>
                     </div>
+                    <button
+                        className={`sm:hidden block mr-6 sm:mr-0`}
+                        onClick={toggleMobileMenu}
+                    >
+                        {isMobileMenuOpen ? <X/> : <Menu/>}
+                    </button>
                 </div>
             </div>
         </div>
