@@ -60,21 +60,22 @@ const Page = () => {
             {isLoading ? (
                 <Loading />
             ) : isSuccess && product ? (
-                <div className="pt-28 px-44">
-                    <div className="flex py-10">
-                        <div className="w-1/2">
+                <div className="pt-28 sm:px-44 px-8">
+                    <div className="sm:flex py-10">
+                        <div className="sm:w-1/2">
                             <div className="flex justify-center items-center">
-                                <img src={product.image} alt="brand_img" className="w-[450px] h-[450px] p-6"/>
+                                <img src={product.image} alt="brand_img" className="w-[450px] sm:h-[450px] h-[400px]
+                                p-6"/>
                             </div>
                         </div>
-                        <div className="w-1/2 bg-gray-200 rounded-r-lg flex flex-col items-center px-20">
+                        <div className="sm:w-1/2 bg-gray-200 rounded-r-lg flex flex-col items-center sm:px-20 px-4 pt-4 sm:pt-0">
                             <div className="text-2xl font-bold mt-6">
                                 {product.title}
                             </div>
                             <div className="mt-10 line-clamp-6">
                                 {product.description}
                             </div>
-                            <div className="flex justify-between w-full px-8 pt-6">
+                            <div className="flex justify-between w-full sm:px-8 pt-6">
                                 <div className="text-lg font-bold mt-1">
                                     Quantity
                                 </div>
@@ -105,8 +106,8 @@ const Page = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center items-center py-16 gap-4">
-                        <div className="w-1/3 bg-gray-200 py-4">
+                    <div className="sm:flex justify-center items-center py-16 sm:gap-4">
+                        <div className="sm:w-1/3 bg-gray-200 py-4">
                             <div className="ml-4 text-xl font-bold">
                                 Category
                             </div>
@@ -114,7 +115,7 @@ const Page = () => {
                                 {product.category}
                             </div>
                         </div>
-                        <div className="w-1/3 bg-gray-200 py-4">
+                        <div className="sm:w-1/3 bg-gray-200 py-4 mt-4 sm:mt-0">
                             <div className="ml-4 text-xl font-bold">
                                 Rating
                             </div>
@@ -122,7 +123,7 @@ const Page = () => {
                                 {product.rating.rate}
                             </div>
                         </div>
-                        <div className="w-1/3 bg-gray-200 py-4">
+                        <div className="sm:w-1/3 bg-gray-200 py-4 mt-4 sm:mt-0">
                             <div className="ml-4 text-xl font-bold">
                                 Rating Count
                             </div>
@@ -134,7 +135,9 @@ const Page = () => {
                     <div className="font-bold text-2xl">
                         Trending Now
                     </div>
-                    <Carousel/>
+                    <div className="py-4 sm:py-0">
+                        <Carousel/>
+                    </div>
                 </div>
             ) : (
                 <>
