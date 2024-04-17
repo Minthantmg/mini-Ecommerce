@@ -44,7 +44,7 @@ const Page = () => {
             {isLoading && <Loading/>}
             {isError && <ErrorGif/>}
             {isSuccess && isIdSuccess && (
-                <div className="sm:py-32 sm:px-44 px-10 pt-32 sm:pt-0">
+                <div className="sm:px-44 px-8 pt-32">
                     <div className="flex items-center cursor-pointer" onClick={goBack}>
                         <div>
                             <Left/>
@@ -52,16 +52,17 @@ const Page = () => {
                         <div className="ml-1">Home</div>
                     </div>
 
-                    <div className="flex justify-center items-center gap-2">
+                    <div className="flex justify-center items-center gap-2 my-4 sm:my-0">
                         {categories.map((item: any) => (
                             <div key={item.name}>
                                 <CustomButton title={item}
-                                              containerStyles="border px-2 py-2 hover:border-black border-2"
+                                              containerStyles="border text-sm sm:text-base px-2 sm:py-2 h-16 sm:h-fit
+                                              hover:border-black border-2"
                                               handleClick={() => handleToggle({clickedItemId: item})}/>
                             </div>
                         ))}
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:pt-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:py-10 py-6">
                         {categoryId.map((product: any) => (
                             <Link href={`./product_page/${product.id}`} key={product.id}>
                                 <CustomCard title={product.title} price={product.price}
