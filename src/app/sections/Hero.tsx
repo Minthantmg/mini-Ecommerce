@@ -93,7 +93,7 @@ const Hero = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="sm:w-1/2 bg-gray-400 sm:h-96 h-72">
+                            <div className="sm:w-1/2 bg-gray-400 sm:h-96 hidden sm:block">
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@ const Hero = () => {
                         <Carousel/>
 
                         <div className="sm:flex sm:pt-10 sm:pb-20 pt-4 pb-4">
-                            <div className="sm:w-1/2 bg-gray-400 sm:h-96 h-72">
+                            <div className="sm:w-1/2 bg-gray-400 sm:h-96 hidden sm:block">
                             </div>
                             <div className="sm:w-1/2 bg-gray-200 flex flex-col justify-center items-center">
                                 <div className="sm:ml-32 p-10 sm:p-0">
