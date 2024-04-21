@@ -1,6 +1,5 @@
 'use client'
 import React, {useEffect} from 'react';
-import {Products} from "../../../constants";
 import CustomCard from "@/app/components/CustomCard";
 import Carousel from "@/app/components/CustomCarousel";
 import image_four from "../../../public/f4.jpg"
@@ -8,8 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import {useProducts} from "../../../hook/useProducts";
 import Loading from "@/app/components/loading";
-import {isError} from "node:util";
 import ErrorGif from "@/app/components/errorGif";
+import gadget from "../../../public/gadgets.jpeg"
 
 const Hero = () => {
     const {useGetProductsList} = useProducts()
@@ -43,7 +42,7 @@ const Hero = () => {
                             <div className="sm:w-1/2 rounded-lg h-[500px] mt-4 sm:mt-0">
                                 <div className="h-[240px] flex gap-4">
                                     <div className="w-1/2 bg-gray-300 rounded-lg sm:ml-4 text-white flex items-end">
-                                        <div className="sm:ml-4 sm:mb-4 text-3xl font-bold">
+                                        <div className="relative sm:ml-4 sm:mb-4 text-3xl font-bold">
                                             Health
                                         </div>
                                     </div>
@@ -53,7 +52,8 @@ const Hero = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="group hover:opacity-90 rounded-lg h-[240px] mt-4 sm:ml-4 flex items-end">
+                                <div
+                                    className="group hover:opacity-90 rounded-lg h-[240px] mt-4 sm:ml-4 flex items-end">
                                     <Image src={image_four} alt="header_image_four"
                                            className="h-60 absolute rounded-lg sm:w-[560px] w-[335px]"/>
                                     <div
