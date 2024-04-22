@@ -54,12 +54,10 @@ const Page = () => {
 
                     <div className="flex justify-center items-center gap-2 my-4 sm:my-0">
                         {categories.map((item: any) => (
-                            <div key={item.name}>
-                                <CustomButton title={item}
-                                              containerStyles="border text-sm sm:text-base px-2 sm:py-2 h-16 sm:h-fit
+                            <CustomButton key={item.title} title={item}
+                                          containerStyles="border text-sm sm:text-base px-2 sm:py-2 h-16 sm:h-fit
                                               hover:border-black border-2"
-                                              handleClick={() => handleToggle({clickedItemId: item})}/>
-                            </div>
+                                          handleClick={() => handleToggle({clickedItemId: item})}/>
                         ))}
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:py-10 py-6">
