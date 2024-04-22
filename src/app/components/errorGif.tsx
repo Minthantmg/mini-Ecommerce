@@ -11,7 +11,7 @@ const ErrorGif = () => {
                     404
                 </div>
                 <div className="mt-4">
-                    Sorry, we coundn&apos;t find this page.
+                    Sorry, we cannot find this page.
                 </div>
             </div>
         </>
