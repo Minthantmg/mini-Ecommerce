@@ -13,7 +13,7 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import Empty from "@/app/components/empty";
 import Close from "../../../public/close";
-import {cartItemProps} from "@/app/types";
+import {cartItemProps, displayProps} from "@/app/types";
 import {ScrollArea, ScrollBar} from "@/components/ui/scroll-area";
 import {
     calculateTotal,
@@ -22,18 +22,14 @@ import {
     increase,
     removeItem
 } from "@/app/features/CartDataSlice";
-import { Menu , X} from 'lucide-react';
+import {Menu} from 'lucide-react';
 import {Separator} from "@/components/ui/separator";
 
-const _Nav = () => {
+const _Nav = ({toggleDisplay} :displayProps) => {
     const router = useRouter()
     const dispatch = useDispatch();
     const {cartData, total} = useSelector((state: any) => state.cartData)
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
     const gotoCategories = () => {
         router.push('/sections/Categories')
     }
@@ -106,7 +102,8 @@ const _Nav = () => {
                                                                                 alt="cart_img" width={50} height={50}/>
                                                                         </div>
                                                                         <div className="w-9/12 border-l-2 ml-2">
-                                                                            <div className="sm:flex justify-between text-start">
+                                                                            <div
+                                                                                className="sm:flex justify-between text-start">
                                                                                 <span
                                                                                     className="text-black mx-2 font-bold line-clamp-3">
                                                                                     {item.title}
@@ -175,9 +172,9 @@ const _Nav = () => {
                     </div>
                     <button
                         className={`sm:hidden block mr-6 sm:mr-0`}
-                        onClick={toggleMobileMenu}
+                        onClick={toggleDisplay}
                     >
-                        {isMobileMenuOpen ? <X/> : <Menu/>}
+                        <Menu/>
                     </button>
                 </div>
             </div>
