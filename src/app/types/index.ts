@@ -53,3 +53,7 @@ export interface cartProps {
     image: any
 }
 
+export interface displayProps{
+    toggleDisplay: any
+}
+
