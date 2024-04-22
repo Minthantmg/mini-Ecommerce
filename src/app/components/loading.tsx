@@ -5,7 +5,7 @@ import loading from '../../../public/loading.gif'
 const Loading = () => {
     return (
         <div className="w-full h-screen flex flex-col justify-center items-center">
-            <Image src={loading} alt="loading" />
+            <Image src={loading} alt="loading" priority/>
         </div>
     );
 };
