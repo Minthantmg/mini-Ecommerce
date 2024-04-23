@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useParams} from "next/navigation";
 import {CustomButton} from "@/app/components";
 import Carousel from "@/app/components/CustomCarousel";
@@ -58,7 +58,7 @@ const Page = () => {
     return (
         <>
             {isLoading ? (
-                <Loading />
+                <Loading/>
             ) : isSuccess && product ? (
                 <div className="pt-28 sm:px-44 px-8">
                     <div className="sm:flex py-10">
@@ -68,7 +68,8 @@ const Page = () => {
                                 p-6"/>
                             </div>
                         </div>
-                        <div className="sm:w-1/2 bg-gray-200 rounded-r-lg flex flex-col items-center sm:px-20 px-4 pt-4 sm:pt-0">
+                        <div
+                            className="sm:w-1/2 bg-gray-200 rounded-r-lg flex flex-col items-center sm:px-20 px-4 pt-4 sm:pt-0">
                             <div className="text-2xl font-bold mt-6">
                                 {product.title}
                             </div>
@@ -141,7 +142,7 @@ const Page = () => {
                 </div>
             ) : (
                 <>
-                    <ErrorGif />
+                    <ErrorGif/>
                 </>
             )}
         </>
