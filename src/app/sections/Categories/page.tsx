@@ -2,11 +2,9 @@
 import React, {useEffect, useState} from 'react';
 import Left from "../../../../public/left";
 import {useRouter} from "next/navigation";
-import {Products} from "../../../../constants";
 import CustomCard from "@/app/components/CustomCard";
 import {CustomButton} from "@/app/components";
 import {clickIdProps} from "@/app/types";
-import {useSelector} from "react-redux";
 import Link from "next/link";
 import {useProducts} from "../../../../hook/useProducts";
 import Loading from "@/app/components/loading";
@@ -14,8 +12,6 @@ import ErrorGif from "@/app/components/errorGif";
 
 const Page = () => {
     const router = useRouter()
-    const {cartItems, total, amount} = useSelector((state: any) => state.cart)
-    const [filter, setFilter] = useState("All")
     const [category, setCategory] = useState("electronics")
 
     const {useGetProductsCategoryList, useGetCategoryById} = useProducts()
@@ -30,9 +26,6 @@ const Page = () => {
     const handleToggle = ({clickedItemId}: clickIdProps) => {
         setCategory(clickedItemId)
     };
-
-    const filteredProducts = Products.filter((product) => product.category === filter.toString());
-
 
     useEffect(() => {
             router.prefetch('/')
