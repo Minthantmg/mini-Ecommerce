@@ -8,11 +8,15 @@ import Image from "next/image";
 import {useProducts} from "../../../hook/useProducts";
 import Loading from "@/app/components/loading";
 import ErrorGif from "@/app/components/errorGif";
-import gadget from "../../../public/gadgets.jpeg"
+import electronic from "../../../public/electronic.jpg"
+import kitchen from "../../../public/kitchen.jpg"
+import living from "../../../public/living.jpg"
+import banner_one from "../../../public/banner1.jpg"
+import banner_two from "../../../public/banner2.jpg"
 
 const Hero = () => {
     const {useGetProductsList} = useProducts()
-    const {data: products, isSuccess,isLoading,isError} = useGetProductsList()
+    const {data: products, isSuccess, isLoading, isError} = useGetProductsList()
     // const dispatch = useDispatch()
     // // @ts-ignore
     // const data = useSelector(state => state.cart)
@@ -26,39 +30,48 @@ const Hero = () => {
 
     return (
         <>
-            {isLoading && <Loading />}
-            {isError && <ErrorGif />}
+            {isLoading && <Loading/>}
+            {isError && <ErrorGif/>}
             {isSuccess && (
                 <>
                     <div className="sm:pt-32 pt-28">
                         <div className="sm:flex">
-                            <div className="sm:w-1/2 rounded-lg h-[300px] sm:h-[500px] bg-pink-200 flex justify-start items-end">
-                                <div className="ml-4 mb-6">
-                                    <div className="text-white font-bold text-3xl">
-                                        Spring 2024
+                            <div
+                                className="sm:w-1/2 rounded-lg h-[300px] sm:h-[500px] flex justify-start items-end group hover:opacity-90 cursor-pointer">
+                                <Image src={electronic} alt="electronic"
+                                       className="h-[300px] sm:h-[500px] w-full rounded-lg"/>
+                                <div className="absolute z-10 ml-4 mb-6">
+                                    <div className="text-white font-bold text-3xl group-hover:text-opacity-70">
+                                        Electronic
                                     </div>
                                 </div>
                             </div>
                             <div className="sm:w-1/2 rounded-lg h-[500px] mt-4 sm:mt-0">
                                 <div className="h-[240px] flex gap-4">
-                                    <div className="w-1/2 bg-gray-300 rounded-lg sm:ml-4 text-white flex items-end">
-                                        <div className="relative sm:ml-4 sm:mb-4 text-3xl font-bold">
-                                            Health
+                                    <div
+                                        className="w-1/2 bg-gray-300 rounded-lg sm:ml-4 text-white flex items-end group hover:opacity-90 cursor-pointer">
+                                        <Image src={living} alt="kitchen_img" className="h-[240px] rounded-lg"/>
+                                        <div
+                                            className="absolute z-10 m-4 sm:ml-4 sm:mb-4 text-3xl font-bold group-hover:text-opacity-70">
+                                            Living
                                         </div>
                                     </div>
-                                    <div className="w-1/2 bg-pink-400 rounded-lg flex items-end">
-                                        <div className="m-4 text-white text-3xl font-bold">
-                                            New
+                                    <div
+                                        className="w-1/2 rounded-lg flex items-end group hover:opacity-90 cursor-pointer">
+                                        <Image src={kitchen} alt="kitchen_img" className="h-[240px] rounded-lg"/>
+                                        <div
+                                            className="absolute z-10 m-4 text-white text-3xl font-bold group-hover:text-opacity-70">
+                                            Kitchen
                                         </div>
                                     </div>
                                 </div>
                                 <div
-                                    className="group hover:opacity-90 rounded-lg h-[240px] mt-4 sm:ml-4 flex items-end">
+                                    className="group hover:opacity-90 rounded-lg h-[240px] mt-4 sm:ml-4 flex items-end cursor-pointer">
                                     <Image src={image_four} alt="header_image_four"
-                                           className="h-60 absolute rounded-lg sm:w-[560px] w-[335px]"/>
+                                           className="h-60 absolute rounded-lg sm:w-[560px] w-[360px]"/>
                                     <div
                                         className="relative text-white m-6 text-3xl font-bold group-hover:text-opacity-70">
-                                        New
+                                        Furniture
                                     </div>
                                 </div>
                             </div>
@@ -79,13 +92,14 @@ const Hero = () => {
                         </div>
 
                         <div className="sm:flex sm:mt-20 mt-8 pb-4 sm:pb-0">
-                            <div className="sm:w-1/2 bg-gray-200 flex flex-col justify-center items-center">
-                                <div className="sm:ml-32 p-10 sm:p-0">
+                            <div
+                                className="sm:w-1/2 bg-gray-200 flex flex-col justify-center items-center sm:rounded-l-lg">
+                                <div className="sm:ml-20 p-10 sm:p-0">
                                     <div className="font-bold text-3xl">
                                         Creative harmonious living
                                     </div>
-                                    <div className="sm:mr-32 mt-2 text-black">
-                                        RAOUF Products are all made to standard sizes so that you can mix and match them
+                                    <div className="sm:mr-16 mt-2 text-black">
+                                        Products are all made to standard sizes so that you can mix and match them
                                         freely.
                                     </div>
                                     <div className="mt-4 w-fit bg-black text-white">
@@ -93,7 +107,8 @@ const Hero = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="sm:w-1/2 bg-gray-400 sm:h-96 hidden sm:block">
+                            <div className="sm:w-1/2 sm:h-96 hidden sm:block">
+                                <Image src={banner_one} alt="banner_one" className="w-full sm:h-96 sm:rounded-r-lg"/>
                             </div>
                         </div>
 
@@ -103,15 +118,17 @@ const Hero = () => {
                         <Carousel/>
 
                         <div className="sm:flex sm:pt-10 sm:pb-20 pt-4 pb-4">
-                            <div className="sm:w-1/2 bg-gray-400 sm:h-96 hidden sm:block">
+                            <div className="sm:w-1/2 sm:h-96 hidden sm:block">
+                                <Image src={banner_two} alt="banner_two" className="sm:h-96 rounded-l-lg"/>
                             </div>
-                            <div className="sm:w-1/2 bg-gray-200 flex flex-col justify-center items-center">
-                                <div className="sm:ml-32 p-10 sm:p-0">
+                            <div
+                                className="sm:w-1/2 bg-gray-200 flex flex-col justify-center items-center sm:rounded-r-lg">
+                                <div className="sm:ml-20 p-10 sm:p-0">
                                     <div className="font-bold text-3xl">
                                         Comfortable & Elegante Living
                                     </div>
-                                    <div className="sm:mr-32 mt-2 text-black">
-                                        RAOUF Products are all made to standard sizes so that you can mix and match them
+                                    <div className="sm:mr-16 mt-2 text-black">
+                                        Products are all made to standard sizes so that you can mix and match them
                                         freely.
                                     </div>
                                     <div className="mt-4 w-fit bg-black text-white">
