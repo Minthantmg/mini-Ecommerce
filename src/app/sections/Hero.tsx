@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect} from 'react';
+import React from 'react';
 import CustomCard from "@/app/components/CustomCard";
 import Carousel from "@/app/components/CustomCarousel";
 import image_four from "../../../public/f4.jpg"
@@ -39,7 +39,7 @@ const Hero = () => {
                             <div
                                 className="sm:w-1/2 rounded-lg h-[300px] sm:h-[500px] flex justify-start items-end group hover:opacity-90 cursor-pointer">
                                 <Image src={electronic} alt="electronic"
-                                       className="h-[300px] sm:h-[500px] w-full rounded-lg"/>
+                                       className="h-[300px] sm:h-[500px] w-full rounded-lg" priority/>
                                 <div className="absolute z-10 ml-4 mb-6">
                                     <div className="text-white font-bold text-3xl group-hover:text-opacity-70">
                                         Electronic
@@ -68,9 +68,9 @@ const Hero = () => {
                                 <div
                                     className="group hover:opacity-90 rounded-lg h-[240px] mt-4 sm:ml-4 flex items-end cursor-pointer">
                                     <Image src={image_four} alt="header_image_four"
-                                           className="h-60 absolute rounded-lg sm:w-[560px] w-[360px]"/>
+                                           className="h-60 rounded-lg"/>
                                     <div
-                                        className="relative text-white m-6 text-3xl font-bold group-hover:text-opacity-70">
+                                        className="absolute z-10 text-white m-6 text-3xl font-bold group-hover:text-opacity-70">
                                         Furniture
                                     </div>
                                 </div>
