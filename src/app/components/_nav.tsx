@@ -54,7 +54,7 @@ const _Nav = ({toggleDisplay} :displayProps) => {
         <div>
             <div className="flex justify-between items-center fixed z-10 bg-white w-full sm:px-44 shadow-sm">
                 <div
-                    className="rounded-full bg-red-500 text-white text-xs mx-2 my-2 px-2 sm:px-1.5 py-7 font-bold cursor-pointer"
+                    className="rounded-full bg-red-500 text-white text-xs mx-5 my-2 px-1.5 sm:px-1.5 py-7 font-bold cursor-pointer"
                     onClick={gotoHome}>
                     ミニマート
                 </div>
