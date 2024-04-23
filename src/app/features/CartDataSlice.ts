@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {cartItems, Products} from "../../../constants";
+import {cartItems} from "../../../constants";
 import {toast} from "@/components/ui/use-toast";
 import {className} from "postcss-selector-parser";
 
