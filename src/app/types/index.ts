@@ -54,6 +54,6 @@ export interface cartProps {
 }
 
 export interface displayProps{
-    toggleDisplay: any
+    toggleDisplay: () => void;
 }
 
