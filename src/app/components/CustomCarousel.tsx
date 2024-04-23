@@ -6,8 +6,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import Image from "next/image";
-import {Products} from "../../../constants";
 import Link from "next/link";
 import {useProducts} from "../../../hook/useProducts";
 
