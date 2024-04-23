@@ -49,7 +49,7 @@ const Hero = () => {
                             <div className="sm:w-1/2 rounded-lg h-[500px] mt-4 sm:mt-0">
                                 <div className="h-[240px] flex gap-4">
                                     <div
-                                        className="w-1/2 bg-gray-300 rounded-lg sm:ml-4 text-white flex items-end group hover:opacity-90 cursor-pointer">
+                                        className="w-1/2 rounded-lg sm:ml-4 text-white flex items-end group hover:opacity-90 cursor-pointer">
                                         <Image src={living} alt="kitchen_img" className="h-[240px] rounded-lg"/>
                                         <div
                                             className="absolute z-10 m-4 sm:ml-4 sm:mb-4 text-3xl font-bold group-hover:text-opacity-70">
